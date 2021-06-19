@@ -46,7 +46,7 @@ def scattP(xdata,ydata,label):
 
 # ---Import and inspect data
 
-flats = pd.read_csv('../../data/original/turkuflats.csv', sep=',')
+flats = pd.read_csv('/home/chpatola/Desktop/Skola/Python/turku_flatprices/data/original/turkuflats_2021_06.csv', sep=',')
 
 flats.dtypes
 flats.describe()
@@ -56,11 +56,6 @@ flats.head
 
 for c in flats.columns:
     print(flats[c].unique())  
-
-#Elevator and plot are yes/no      
-
-flats.groupby('Stadsdel ◄')['Stadsdel ◄'].count() #76!
-flats.groupby('Energik. ◄')['Energik. ◄'].count() #Keep first letter
 
 
 # ---Basic Cleaning
@@ -109,7 +104,7 @@ flats = flats.loc[(flats.SellPrice < 500000)] #Perhaps better not to cap?
 flats.describe()
 
 #Make values numerical
-flats.replace({'State':{'bra':3,'nöjaktig':2,'dålig':1}},inplace=True) 
+flats.replace({'State':{'hyvä':3,'tyyd.':2,'huono':1}},inplace=True) 
 
 flats['M2'] = flats['M2'].str.replace(',','.')
 flats['M2'] = flats['M2'].astype(float)

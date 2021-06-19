@@ -6,11 +6,14 @@ from sklearn.feature_selection import SelectFromModel
 
 from sklearn.ensemble import RandomForestRegressor
 
+# You need to decide how you handle NA for all columns (here na is \xa0')!!
 
 
-# ---Import data
-flats = pd.read_csv('../data/original/turkuflats.csv', sep=',')
-flats.describe()
+# ---Import data 
+flats = pd.read_csv('/home/chpatola/Desktop/Skola/Python/turku_flatprices/data/original/turkuflats_2021_06.csv', sep=',')
+
+for col in flats:
+    print(flats[col].unique())
 
 # ---Cleaning
 
@@ -26,27 +29,33 @@ flats.rename(columns=dict(
 flats.drop(['Type','€/M2','Plot'],axis =1,inplace=True)
 
 #Unify column contents
+
+#--- Take first letter in these columns
 flats['Rooms'] = flats['Rooms'].astype(str).str[0]
 flats['Floor'] = flats['Floor'].astype(str).str[0]
 flats['EnergyClass'] = flats['EnergyClass'].astype(str).str[0]
 
-
+#--- Unify district groups
 flats['District']=flats.District.str.replace(r'(^.*linnanf.*$)', 'Linnanfältti')
 flats['District']=flats.District.str.replace(r'(^.*eskusta.*$)', 'Keskusta')
 flats['District']=flats.District.str.replace(r'(^.*aunistula.*$)', 'Raunistula')
 
+# --- Ny column with info on if state was not reported
+flats['StateNA'] = np.where(flats['State'].isin(['\xa0','NA','n']),True,False)
+
+#--- Unify EnergyClasses and handle na in columns
 flats.replace({'EnergyClass':{'A':'A-C','B':'A-C','C':'A-C',
                     'D':'D-G','E':'D-G','F':'D-G','G':'D-G','n':'D-G'},
-                'Rooms': {'A':flats['Rooms'].mode()[0],
-                    'a':flats['Rooms'].mode()[0], 
+                'Rooms': {'t':flats['Rooms'].mode()[0],
+                    'o':flats['Rooms'].mode()[0], 
                     'h':flats['Rooms'].mode()[0]},
-                'Floor': {'n':flats['Floor'].mode()[0],
-                     '-':flats['Rooms'].mode()[0]}},inplace=True) 
-
-flats[flats.District.str.contains('eskust')]
+                'Floor': {'t':flats['Floor'].mode()[0],
+                     '\xa0':flats['Rooms'].mode()[0]},
+                'State':{'\xa0':flats['State'].mode()[0]}
+                },inplace=True) 
 
 #Make values numerical
-flats.replace({'State':{'bra':3,'nöjaktig':2,'dålig':1}},inplace=True) 
+flats.replace({'State':{'hyvä':3,'tyyd.':2,'huono':1}},inplace=True) 
 
 flats['M2'] = flats['M2'].str.replace(',','.')
 flats['M2'] = flats['M2'].astype(float)
@@ -54,25 +63,20 @@ flats['M2'] = flats['M2'].astype(float)
 flats.Rooms =flats.Rooms.astype(int)
 flats.Floor =flats.Floor.astype(int)
 
-#Handle NA 
-flats['StateNA'] = np.where(flats['State'].isna(), True, False)
-flats['State'] = flats['State'].fillna(flats['State'].mode()[0])
-flats.dtypes
 
 #Transform categorical to dummies
 flats_dummified = pd.get_dummies(flats)
 
-#---Divide into x and y
+#Divide into x and y
 X = flats_dummified.drop('SellPrice',axis=1)
 y = flats_dummified.SellPrice
 
 
-#---Split into train and test
+#Split into train and test
 train_X, test_X, train_y, test_y = train_test_split(X, 
     y,test_size = 0.3,random_state = 2)
 
-#-- Feature selection
-
+#Feature selection
 select = SelectFromModel(
                         RandomForestRegressor(min_samples_leaf= 1,
                                              min_samples_split= 5, n_estimators= 500,
@@ -82,14 +86,17 @@ select.fit(train_X,train_y)
 train_X_features = select.transform(train_X)
 test_X_features = select.transform(test_X)
 
-mask = select.get_support()
+mask = select.get_support() #Chosen columns
 train_X.iloc[1,mask]
 
 
-#--Test Model
+#Test Model
 Regressor = RandomForestRegressor(min_samples_leaf= 1,min_samples_split= 5,
                                  n_estimators= 500,random_state=0)
 score = Regressor.fit(train_X_features,train_y).score(test_X_features,test_y)
 #score = Regressor.fit(train_X,train_y).score(test_X,test_y)
 print("R2 score of the model {:2f}".format(score))
-#81                                                                    
+#88 
+# R-squared (R2) is a statistical measure that represents the proportion of the 
+# variance for a dependent variable that's explained by an independent variable 
+# or variables in a regression model.                                                                     
