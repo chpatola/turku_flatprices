@@ -103,6 +103,20 @@ flats = flats.loc[(flats.SellPrice < 500000)] #Perhaps better not to cap?
 
 flats.describe()
 
+# --- Ny column with info on if state was not reported
+flats['StateNA'] = np.where(flats['State'].isin(['\xa0','NA','n']),True,False)
+
+#--- Unify EnergyClasses and handle na in columns
+flats.replace({'EnergyClass':{'A':'A-C','B':'A-C','C':'A-C',
+                    'D':'D-G','E':'D-G','F':'D-G','G':'D-G','n':'D-G'},
+                'Rooms': {'t':flats['Rooms'].mode()[0],
+                    'o':flats['Rooms'].mode()[0], 
+                    'h':flats['Rooms'].mode()[0]},
+                'Floor': {'t':flats['Floor'].mode()[0],
+                     '\xa0':flats['Rooms'].mode()[0]},
+                'State':{'\xa0':flats['State'].mode()[0]}
+                },inplace=True) 
+
 #Make values numerical
 flats.replace({'State':{'hyvä':3,'tyyd.':2,'huono':1}},inplace=True) 
 
@@ -240,7 +254,7 @@ train.columns = train_X.columns
 train.shape
 train['y'] = train_y.reset_index()['SellPrice']
 
-train.to_csv('../data/pre-processed/processedFlats.csv')
+train.to_csv('/home/chpatola/Desktop/Skola/Python/turku_flatprices/data/pre-processed/processedFlats.csv')
 
 
 

@@ -1,6 +1,8 @@
 ---
 title: "Correlation Turkuflats"
-output: html_notebook
+output:
+  pdf_document: default
+  html_notebook: default
 ---
 
 Read in the output from the "cleaning" Python script.
@@ -8,8 +10,6 @@ Read in the output from the "cleaning" Python script.
 ```{r}
 library(tidyverse)
 library(GGally)
-
-
 
 ```
 ```{r}
@@ -23,7 +23,7 @@ dim(flats)
 ```
 
 
-We see few surprises in the correlations. Built year is clearly correlated with energy class
+We see few surprises in the correlations. Built year is clearly correlated with state
 
 ```{r}
 ggpairs(flats[,c(2:7,40)])
@@ -49,10 +49,3 @@ fit <- lm(y ~ .,data=flats)
 summary(fit)
 ```
 
-
-
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
-
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
-
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.

@@ -1,0 +1,500 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Correlation Turkuflats},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{Correlation Turkuflats}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+Read in the output from the ``cleaning'' Python script.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+\end{verbatim}
+
+\begin{verbatim}
+## v ggplot2 3.3.3     v purrr   0.3.4
+## v tibble  3.1.0     v dplyr   1.0.3
+## v tidyr   1.1.2     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.0
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(GGally)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Registered S3 method overwritten by 'GGally':
+##   method from   
+##   +.gg   ggplot2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flats <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{'/home/chpatola/Desktop/Skola/Python/turku_flatprices/data/pre-processed/processedFlats.csv'}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{glimpse}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 467
+## Columns: 46
+## $ X                     [3m[38;5;246m<int>[39m[23m 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14~
+## $ Rooms                 [3m[38;5;246m<dbl>[39m[23m 0.6666667, 0.6666667, 0.6666667, 0.6666667, 0.33~
+## $ M2                    [3m[38;5;246m<dbl>[39m[23m 0.34507042, 0.40140845, 0.44366197, 0.35211268, ~
+## $ BuiltYear             [3m[38;5;246m<dbl>[39m[23m 0.44660194, 0.43689320, 0.51456311, 0.33009709, ~
+## $ Floor                 [3m[38;5;246m<dbl>[39m[23m 0.625, 0.125, 0.000, 0.125, 0.250, 0.000, 0.500,~
+## $ State                 [3m[38;5;246m<dbl>[39m[23m 1.0, 0.5, 0.5, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0~
+## $ StateNA               [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, ~
+## $ District_Hannunniittu [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Hepokulta    [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Ilpoinen     [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, ~
+## $ District_Iso.heikkilä [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Ispoinen     [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, ~
+## $ District_Itäharju     [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Jäkärlä      [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Kakola       [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Kakolanmäki  [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Kastu        [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Keskusta     [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, ~
+## $ District_Laukkavuori  [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Lauste       [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Linnanfältti [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Luolavuori   [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Majakkaranta [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Martti       [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, ~
+## $ District_Nummi        [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Nättinummi   [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Perno        [3m[38;5;246m<dbl>[39m[23m 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Pohjola      [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Raunistula   [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Runosmäki    [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, ~
+## $ District_Satama       [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Suikkila     [3m[38;5;246m<dbl>[39m[23m 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Teräsrautela [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Uittamo      [3m[38;5;246m<dbl>[39m[23m 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Varissuo     [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ District_Vasaramäki   [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, ~
+## $ Elevator_ei           [3m[38;5;246m<dbl>[39m[23m 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, ~
+## $ Elevator_on           [3m[38;5;246m<dbl>[39m[23m 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, ~
+## $ Plot_oma              [3m[38;5;246m<dbl>[39m[23m 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, ~
+## $ Plot_vuokra           [3m[38;5;246m<dbl>[39m[23m 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, ~
+## $ Plot_.                [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ EnergyClass_A.C       [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, ~
+## $ EnergyClass_D.G       [3m[38;5;246m<dbl>[39m[23m 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, ~
+## $ NewBuild_False        [3m[38;5;246m<dbl>[39m[23m 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~
+## $ NewBuild_True         [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ y                     [3m[38;5;246m<int>[39m[23m 136000, 69000, 96500, 223000, 250000, 227308, 25~
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dim}\NormalTok{(flats)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 467  46
+\end{verbatim}
+
+We see few surprises in the correlations. Built year is clearly
+correlated with energy class
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggpairs}\NormalTok{(flats[,}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\OperatorTok{:}\DecValTok{7}\NormalTok{,}\DecValTok{40}\NormalTok{)])}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{correlation_flats_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pca_flats <-}\StringTok{ }\KeywordTok{prcomp}\NormalTok{(flats)}
+\KeywordTok{summary}\NormalTok{(pca_flats)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Importance of components:
+##                          PC1 PC2    PC3    PC4    PC5    PC6    PC7    PC8
+## Standard deviation     81720 135 0.9128 0.6203 0.4658 0.3655 0.3408 0.2792
+## Proportion of Variance     1   0 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
+## Cumulative Proportion      1   1 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+##                           PC9   PC10   PC11   PC12  PC13   PC14   PC15   PC16
+## Standard deviation     0.2476 0.2353 0.2058 0.2005 0.194 0.1901 0.1772 0.1713
+## Proportion of Variance 0.0000 0.0000 0.0000 0.0000 0.000 0.0000 0.0000 0.0000
+## Cumulative Proportion  1.0000 1.0000 1.0000 1.0000 1.000 1.0000 1.0000 1.0000
+##                          PC17   PC18   PC19   PC20   PC21   PC22   PC23   PC24
+## Standard deviation     0.1679 0.1616 0.1601 0.1583 0.1472 0.1418 0.1371 0.1334
+## Proportion of Variance 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
+## Cumulative Proportion  1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+##                         PC25   PC26   PC27   PC28 PC29   PC30   PC31   PC32
+## Standard deviation     0.125 0.1217 0.1209 0.1131 0.11 0.1038 0.1023 0.1019
+## Proportion of Variance 0.000 0.0000 0.0000 0.0000 0.00 0.0000 0.0000 0.0000
+## Cumulative Proportion  1.000 1.0000 1.0000 1.0000 1.00 1.0000 1.0000 1.0000
+##                           PC33    PC34    PC35    PC36    PC37    PC38    PC39
+## Standard deviation     0.09844 0.09689 0.09241 0.09063 0.08097 0.07565 0.07296
+## Proportion of Variance 0.00000 0.00000 0.00000 0.00000 0.00000 0.00000 0.00000
+## Cumulative Proportion  1.00000 1.00000 1.00000 1.00000 1.00000 1.00000 1.00000
+##                          PC40    PC41      PC42      PC43      PC44      PC45
+## Standard deviation     0.0606 0.04267 8.165e-12 8.165e-12 8.165e-12 8.165e-12
+## Proportion of Variance 0.0000 0.00000 0.000e+00 0.000e+00 0.000e+00 0.000e+00
+## Cumulative Proportion  1.0000 1.00000 1.000e+00 1.000e+00 1.000e+00 1.000e+00
+##                             PC46
+## Standard deviation     8.123e-12
+## Proportion of Variance 0.000e+00
+## Cumulative Proportion  1.000e+00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{biplot}\NormalTok{(pca_flats, }\DataTypeTok{choices =} \DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{, }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"black"}\NormalTok{,}\StringTok{"blue"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+
+## Warning in arrows(0, 0, y[, 1L] * 0.8, y[, 2L] * 0.8, col = col[2L], length =
+## arrow.len): zero-length arrow is of indeterminate angle and so skipped
+\end{verbatim}
+
+\includegraphics{correlation_flats_files/figure-latex/unnamed-chunk-5-1.pdf}
+All variation can be explained by the first principal component
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pairs}\NormalTok{(flats[,}\DecValTok{2}\OperatorTok{:}\DecValTok{7}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{correlation_flats_files/figure-latex/unnamed-chunk-6-1.pdf}
+Let's try linear regression
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(y }\OperatorTok{~}\StringTok{ }\NormalTok{.,}\DataTypeTok{data=}\NormalTok{flats) }
+\KeywordTok{summary}\NormalTok{(fit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = y ~ ., data = flats)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -70743 -16614     17  15850 124518 
+## 
+## Coefficients: (5 not defined because of singularities)
+##                         Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)            2.818e+04  2.718e+04   1.037 0.300368    
+## X                     -3.163e+00  9.788e+00  -0.323 0.746746    
+## Rooms                 -1.650e+04  1.038e+04  -1.590 0.112550    
+## M2                     3.620e+05  1.959e+04  18.478  < 2e-16 ***
+## BuiltYear              2.266e+04  1.418e+04   1.598 0.110799    
+## Floor                  8.326e+03  6.302e+03   1.321 0.187141    
+## State                  3.558e+04  6.355e+03   5.599 3.88e-08 ***
+## StateNA               -8.229e+03  5.820e+03  -1.414 0.158164    
+## District_Hannunniittu -3.383e+04  1.270e+04  -2.663 0.008036 ** 
+## District_Hepokulta    -8.166e+04  1.269e+04  -6.437 3.28e-10 ***
+## District_Ilpoinen     -5.185e+04  9.688e+03  -5.352 1.43e-07 ***
+## District_Iso.heikkilä -9.694e+03  1.437e+04  -0.675 0.500309    
+## District_Ispoinen     -5.087e+04  1.447e+04  -3.516 0.000486 ***
+## District_Itäharju     -1.548e+04  1.258e+04  -1.230 0.219396    
+## District_Jäkärlä      -1.155e+05  1.433e+04  -8.065 7.50e-15 ***
+## District_Kakola        1.008e+04  1.864e+04   0.541 0.589005    
+## District_Kakolanmäki   3.255e+04  1.207e+04   2.696 0.007288 ** 
+## District_Kastu        -1.286e+04  1.543e+04  -0.833 0.405169    
+## District_Keskusta      5.086e+04  7.946e+03   6.401 4.08e-10 ***
+## District_Laukkavuori  -6.281e+04  1.453e+04  -4.322 1.93e-05 ***
+## District_Lauste       -7.773e+04  1.210e+04  -6.422 3.59e-10 ***
+## District_Linnanfältti  2.264e+04  1.239e+04   1.827 0.068360 .  
+## District_Luolavuori   -2.332e+04  9.897e+03  -2.356 0.018904 *  
+## District_Majakkaranta  5.271e+04  1.615e+04   3.265 0.001183 ** 
+## District_Martti        4.487e+04  9.658e+03   4.646 4.51e-06 ***
+## District_Nummi         2.191e+03  1.146e+04   0.191 0.848509    
+## District_Nättinummi   -3.674e+04  1.064e+04  -3.452 0.000611 ***
+## District_Perno        -8.722e+04  1.335e+04  -6.535 1.82e-10 ***
+## District_Pohjola       2.403e+04  1.185e+04   2.028 0.043220 *  
+## District_Raunistula   -1.669e+02  1.223e+04  -0.014 0.989118    
+## District_Runosmäki    -8.510e+04  9.312e+03  -9.138  < 2e-16 ***
+## District_Satama        3.316e+04  1.176e+04   2.819 0.005047 ** 
+## District_Suikkila     -5.616e+04  1.077e+04  -5.214 2.89e-07 ***
+## District_Teräsrautela -3.535e+04  1.451e+04  -2.436 0.015254 *  
+## District_Uittamo      -3.873e+04  1.033e+04  -3.750 0.000201 ***
+## District_Varissuo     -9.010e+04  1.073e+04  -8.396 6.90e-16 ***
+## District_Vasaramäki           NA         NA      NA       NA    
+## Elevator_ei           -1.357e+03  4.413e+03  -0.307 0.758631    
+## Elevator_on                   NA         NA      NA       NA    
+## Plot_oma               4.797e+04  2.154e+04   2.227 0.026449 *  
+## Plot_vuokra            2.400e+04  2.077e+04   1.156 0.248493    
+## Plot_.                        NA         NA      NA       NA    
+## EnergyClass_A.C        2.635e+03  5.313e+03   0.496 0.620206    
+## EnergyClass_D.G               NA         NA      NA       NA    
+## NewBuild_False        -6.417e+04  1.162e+04  -5.525 5.76e-08 ***
+## NewBuild_True                 NA         NA      NA       NA    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 27300 on 426 degrees of freedom
+## Multiple R-squared:  0.898,  Adjusted R-squared:  0.8884 
+## F-statistic: 93.74 on 40 and 426 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+Add a new chunk by clicking the \emph{Insert Chunk} button on the
+toolbar or by pressing \emph{Ctrl+Alt+I}.
+
+When you save the notebook, an HTML file containing the code and output
+will be saved alongside it (click the \emph{Preview} button or press
+\emph{Ctrl+Shift+K} to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the
+editor. Consequently, unlike \emph{Knit}, \emph{Preview} does not run
+any R code chunks. Instead, the output of the chunk when it was last run
+in the editor is displayed.
+
+\end{document}
