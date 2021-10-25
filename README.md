@@ -14,7 +14,7 @@ Clone this repository to your own computer.
 
 cd to the repository.
 
-Create a new conda environment where is the name you want to give the new environment. Then activate the enivronment
+Create a new conda environment where "<env>" is the name you want to give the new environment. Then activate the enivronment
 
 ```
 conda create --name <env> --file requirement.txt
